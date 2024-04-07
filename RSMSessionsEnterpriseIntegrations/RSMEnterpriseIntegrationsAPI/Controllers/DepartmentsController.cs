@@ -22,6 +22,7 @@
         }
 
         [HttpGet("Get")]        
+
         public async Task<IActionResult> Get([FromQuery]int id)
         {
             return Ok(await _service.GetDepartmentById(id));
