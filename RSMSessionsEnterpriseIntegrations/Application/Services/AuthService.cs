@@ -30,6 +30,7 @@ namespace Application.Services
                 throw new BadRequestException("User or password can't be empty");
             }
 
+            user.Email = dto.Email;
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
 
             return user;
