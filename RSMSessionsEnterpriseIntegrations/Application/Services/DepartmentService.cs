@@ -1,6 +1,6 @@
 ﻿namespace Application.Services
 {
-    using Application.DTOs;
+    using Application.DTOs.Departament;
     using Application.Exceptions;
     using Application.Interfaces;
     using Domain.Interfaces;
@@ -31,7 +31,7 @@
                 Name = departmentDto.Name,
             };
 
-            return await _departmentRepository.CreateDepartment(department);
+            return await _departmentRepository.Create(department);
         }
 
         public async Task<int> DeleteDepartment(int id)
@@ -41,12 +41,12 @@
                 throw new BadRequestException("Id is not valid.");
             }
             var department = await ValidateDepartmentExistence(id);
-            return await _departmentRepository.DeleteDepartment(department);
+            return await _departmentRepository.Delete(department);
         }
 
         public async Task<IEnumerable<GetDepartmentDto>> GetAll()
         {
-            var departments = await _departmentRepository.GetAllDepartments();
+            var departments = await _departmentRepository.GetAll();
             List<GetDepartmentDto> departmentsDto = [];
 
             foreach (var department in departments)
@@ -60,17 +60,6 @@
 
                 departmentsDto.Add(dto);
             }
-            
-            /*departments.ToList().ForEach(department =>
-            {
-                GetDepartmentDto dto = new()
-                {
-                    DepartmentId = department.DepartmentId,
-                    Name = department.Name,
-                    GroupName = department.GroupName
-                };
-                departmentsDto.Add(dto);
-            });*/
 
             return departmentsDto; 
         }
@@ -104,16 +93,15 @@
             department.Name = string.IsNullOrWhiteSpace(departmentDto.Name) ? department.Name : departmentDto.Name;
             department.GroupName = string.IsNullOrWhiteSpace(departmentDto.GroupName) ? department.GroupName : departmentDto.GroupName;
            
-            return await _departmentRepository.UpdateDepartment(department);
+            return await _departmentRepository.Update(department);
         }
 
         private async Task<Department> ValidateDepartmentExistence(int id)
         {
-            var existingDepartment = await _departmentRepository.GetDepartmentById(id) 
+            var existingDepartment = await _departmentRepository.GetById(id) 
                 ?? throw new NotFoundException($"Department with Id: {id} was not found.");
 
             return existingDepartment;
         }
-
     }
 }

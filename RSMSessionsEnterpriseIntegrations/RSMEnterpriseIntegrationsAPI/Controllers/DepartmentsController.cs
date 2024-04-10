@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Application.Interfaces;
-    using Application.DTOs;
+    using Application.DTOs.Departament;
 
     [Route("api/[controller]")]
     [ApiController]

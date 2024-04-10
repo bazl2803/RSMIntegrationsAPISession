@@ -1,9 +1,8 @@
-﻿namespace Domain.Models
+﻿namespace Application.DTOs.SalesOrderHeader
 {
-    using Domain.Primitives;
-
-    public class SalesOrderHeader : Entity
+    public class GetSalesOrderHeaderDto
     {
+        public int? Id { get; set; }
         public short? RevisionNumber { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? DueDate { get; set; }

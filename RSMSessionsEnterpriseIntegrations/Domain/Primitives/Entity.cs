@@ -8,7 +8,7 @@ namespace Domain.Primitives
 {
     public abstract class Entity
     {
-        public short Id { get; set; }
+        public int Id { get; set; }
         public DateTime? ModifiedDate {  get; set; }
     }
 }

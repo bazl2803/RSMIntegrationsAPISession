@@ -4,10 +4,10 @@
 
     public interface IDepartmentRepository
     {
-        Task<Department?> GetDepartmentById(int id);
-        Task<IEnumerable<Department>> GetAllDepartments();
-        Task<int> CreateDepartment(Department department);
-        Task<int> UpdateDepartment(Department department);
-        Task<int> DeleteDepartment(Department department);
+        Task<Department?> GetById(int id);
+        Task<IEnumerable<Department>> GetAll();
+        Task<int> Create(Department department);
+        Task<int> Update(Department department);
+        Task<int> Delete(Department department);
     }
 }
