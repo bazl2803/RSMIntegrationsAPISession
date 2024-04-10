@@ -38,7 +38,7 @@ namespace Application.Services
 
         public string Login(UserDto dto)
         {
-            if (user.Email != dto.Email || BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            if (user.Email != dto.Email || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
             {
                 throw new BadRequestException("User or password wrong");
             }
@@ -51,7 +51,7 @@ namespace Application.Services
             var validator = new UserDtoValidator();
             var validationResult = validator.Validate(dto);
 
-            var key = Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:JWTSecret").Value!);
+            var key = Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:Key").Value!);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor
