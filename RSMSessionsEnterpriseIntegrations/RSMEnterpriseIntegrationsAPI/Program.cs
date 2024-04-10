@@ -16,21 +16,21 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
- .AddJwtBearer(options =>
+builder.Services.AddAuthentication("Bearer")
+ .AddJwtBearer(opt =>
  {
-     options.TokenValidationParameters = new TokenValidationParameters
+     var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
+     var signingCredential = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256Signature);
+
+     opt.RequireHttpsMetadata = false;
+
+     opt.TokenValidationParameters = new TokenValidationParameters()
      {
-         ValidateIssuer = true,
-         ValidateAudience = true,
-         ValidateLifetime = true,
-         ValidateIssuerSigningKey = true,
-         ValidIssuer = jwtIssuer,
-         ValidAudience = jwtIssuer,
-         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+         ValidateAudience = false,
+         ValidateIssuer = false,
+         IssuerSigningKey = signingKey
      };
  });
 
