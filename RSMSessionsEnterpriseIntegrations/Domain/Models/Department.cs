@@ -1,9 +1,8 @@
-﻿using Domain.Primitives;
-
-namespace Domain.Models
+﻿namespace Domain.Models
 {
-    public class Department : Entity
+    public class Department
     {
+        public short Id { get; set; }
         public string? Name { get; set; }
         public string? GroupName { get; set; }
     }

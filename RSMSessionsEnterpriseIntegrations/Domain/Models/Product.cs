@@ -8,7 +8,6 @@ namespace Domain.Models
         public string? ProductNumber { get; set; }
         public bool? MakeFlag { get; set; }
         public bool? FinishedGoodsFlag { get; set; }
-        public string? Description { get; set; }
         public string? Color { get; set; }
         public short? SafetyStockLevel { get; set; }
         public short? ReorderPoint { get; set; }

@@ -16,7 +16,6 @@ namespace Infrastructure.Configurations
             builder.Property(e => e.ProductNumber).IsRequired();
             builder.Property(e => e.MakeFlag).IsRequired();
             builder.Property(e => e.FinishedGoodsFlag).IsRequired();
-            builder.Property(e => e.Description).IsRequired();
             builder.Property(e => e.Color);
             builder.Property(e => e.SafetyStockLevel).IsRequired();
             builder.Property(e => e.ReorderPoint).IsRequired();

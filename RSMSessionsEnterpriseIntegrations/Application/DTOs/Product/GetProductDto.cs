@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.DTOs.Product
+﻿namespace Application.DTOs.Product
 {
     public class GetProductDto
     {
-        public int Id { get; set; }
+        public short Id { get; set; }
         public string? Name { get; set; }
         public string? ProductNumber { get; set; }
         public bool? MakeFlag { get; set; }
         public bool? FinishedGoodsFlag { get; set; }
-        public string? Description { get; set; }
         public string? Color { get; set; }
-        public short? SafetyStockLevel { get; set; }
-        public short? ReorderPoint { get; set; }
+        public int? SafetyStockLevel { get; set; }
+        public int? ReorderPoint { get; set; }
         public decimal? StandardCost { get; set; }
         public decimal? ListPrice { get; set; }
         public string? Size { get; set; }
